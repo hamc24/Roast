@@ -13,21 +13,25 @@ const pool = mysql
   })
   .promise();
 
-async function getNotes() {
-  const result = await pool.query("SELECT * FROM notes");
+async function getUsers() {
+  const result = await pool.query("SELECT * FROM users");
   const rows = result[0];
   return rows;
 }
 
-async function getNote(id) {
+async function getUser(id) {
   const [rows] = await pool.query(
     `SELECT * 
-    FROM notes
+    FROM users
     WHERE id = ?`,
     [id] //We use the question mark to prevent SQL Injection attacks
   );
   return rows[0];
 }
 
-const note = await getNote(3);
+async function insertUser(firstName, lastName, userName, passWord) {}
+
+const note = await getUser(1);
 console.log(note);
+
+export { pool };
